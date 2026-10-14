@@ -4,6 +4,7 @@ from pathlib import Path
 
 from .extract import DEFAULT_MODEL, extract, extract_gemini
 from .organize import copy_sorted, write_csv
+from .summary import write_summary
 
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 
@@ -34,7 +35,8 @@ def main(argv=None) -> int:
         rows.append((dest.name, r))
         print(f"{f.name} -> {dest.relative_to(args.out)}")
     write_csv(rows, args.out / "receipts.csv")
-    print(f"done: {len(rows)}/{len(files)} processed, see {args.out / 'receipts.csv'}")
+    write_summary([r for _, r in rows], args.out / "summary.csv")
+    print(f"done: {len(rows)}/{len(files)} processed, see {args.out}/receipts.csv and summary.csv")
     return 0
 
 

@@ -32,6 +32,20 @@ class Receipt:
         return asdict(self)
 
 
+def normalize_date(value) -> str | None:
+    """Accept YYYY-MM-DD, DD/MM/YYYY, DD-MM-YYYY, DD.MM.YYYY (Vietnamese day-first); else None."""
+    if not value:
+        return None
+    v = str(value).strip()
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", v):
+        return v
+    m = re.fullmatch(r"(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4})", v)
+    if m:
+        d, mo, y = m.groups()
+        return f"{y}-{int(mo):02d}-{int(d):02d}"
+    return None
+
+
 def parse_response(text: str) -> Receipt:
     """Parse model output (possibly wrapped in prose/code fences) into a Receipt."""
     match = re.search(r"\{.*\}", text, re.S)
@@ -43,7 +57,7 @@ def parse_response(text: str) -> Receipt:
         total = float(re.sub(r"[^\d.\-]", "", total) or "nan")
     return Receipt(
         vendor=str(data.get("vendor") or "unknown"),
-        date=data.get("date"),
+        date=normalize_date(data.get("date")),
         total=total,
         currency=data.get("currency"),
         category=str(data.get("category") or "other").lower(),
