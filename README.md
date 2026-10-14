@@ -2,6 +2,13 @@
 
 Local-first receipt & invoice sorter for freelancers. A vision model running on **your own laptop** (via [Ollama](https://ollama.com)) reads each receipt, renames it `date_vendor_total`, files it by category, and exports a CSV for your accountant. **No cloud, no API key, no client data leaving your machine.**
 
+## Demo
+![ReceiptSort demo](docs/media/demo.gif)
+
+![summary.csv and sorted folders](docs/media/summary.png)
+
+> The GIF is a replay of captured output from a real run (10 synthetic receipts, Gemma 4 26B via Google AI Studio), not a screen recording. Regenerate with `PYTHONPATH=. python docs/make_demo.py`.
+
 ## Why open-weight?
 - **Privacy:** receipts contain client names and amounts; nothing is uploaded.
 - **Cost:** zero per-receipt cost after the model download.
