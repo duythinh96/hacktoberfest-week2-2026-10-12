@@ -3,6 +3,8 @@ import base64
 import json
 import os
 import re
+import time
+import urllib.error
 import urllib.request
 from dataclasses import dataclass, asdict
 from pathlib import Path
@@ -81,6 +83,17 @@ def extract_gemini(image_path: Path, model: str, api_key: str | None = None) -> 
         GEMINI_URL.format(model=model), body,
         {"Content-Type": "application/json", "x-goog-api-key": api_key},
     )
-    with urllib.request.urlopen(req, timeout=120) as resp:
-        data = json.load(resp)
-    return parse_response(data["candidates"][0]["content"]["parts"][0]["text"])
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                return parse_response(gemini_text(json.load(resp)))
+        except urllib.error.HTTPError as e:
+            if e.code < 500 or attempt == 3:
+                raise
+            time.sleep(2 ** attempt)
+
+
+def gemini_text(data: dict) -> str:
+    """Join answer parts, skipping 'thought' (reasoning) parts that some models emit first."""
+    parts = data["candidates"][0]["content"]["parts"]
+    return "".join(p.get("text", "") for p in parts if not p.get("thought"))

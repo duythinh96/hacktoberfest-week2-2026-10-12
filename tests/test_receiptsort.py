@@ -25,3 +25,12 @@ def test_unique_path(tmp_path):
 def test_write_csv(tmp_path):
     write_csv([("a.jpg", Receipt(vendor="V", total=1.0))], tmp_path / "o.csv")
     assert "vendor" in (tmp_path / "o.csv").read_text().splitlines()[0]
+
+
+def test_gemini_text_skips_thought_parts():
+    from receiptsort.extract import gemini_text
+    data = {"candidates": [{"content": {"parts": [
+        {"text": "reasoning {not json}", "thought": True},
+        {"text": '{"vendor": "A"}'},
+    ]}}]}
+    assert parse_response(gemini_text(data)).vendor == "A"
