@@ -13,7 +13,9 @@ ollama pull gemma3:4b   # ~3GB, fits 16GB RAM (or qwen2.5vl:3b)
 pip install -e .
 receiptsort ./my-receipts -o ./sorted
 ```
-Output: `sorted/<category>/<date>_<vendor>_<total>.jpg` and `sorted/receipts.csv`.
+Output: `sorted/<category>/<date>_<vendor>_<total>.jpg`, `sorted/receipts.csv` (one row per receipt) and `sorted/summary.csv` (totals per month x category, currencies kept separate).
+
+Sample output from the 30 synthetic receipts (Gemma 4 26B via Google API): [`docs/demo-summary.csv`](docs/demo-summary.csv), [`docs/demo-receipts.csv`](docs/demo-receipts.csv).
 
 ## Optional: hosted Google backend (benchmarking only)
 ```bash

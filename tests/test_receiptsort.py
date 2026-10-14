@@ -34,3 +34,24 @@ def test_gemini_text_skips_thought_parts():
         {"text": '{"vendor": "A"}'},
     ]}}]}
     assert parse_response(gemini_text(data)).vendor == "A"
+
+
+def test_normalize_date_vietnamese_formats():
+    from receiptsort.extract import normalize_date
+    assert normalize_date("12/10/2026") == "2026-10-12"
+    assert normalize_date("5.3.2026") == "2026-03-05"
+    assert normalize_date("2026-10-12") == "2026-10-12"
+    assert normalize_date("last Tuesday") is None
+
+
+def test_summary_groups_and_keeps_currencies_apart():
+    from receiptsort.summary import summarize
+    rs = [
+        Receipt(vendor="A", date="2026-10-01", total=10, currency="USD", category="meals"),
+        Receipt(vendor="B", date="2026-10-20", total=5.5, currency="USD", category="meals"),
+        Receipt(vendor="C", date="2026-10-02", total=50000, currency="VND", category="meals"),
+        Receipt(vendor="D", date="2026-10-03", total=None, currency="USD", category="meals"),
+    ]
+    rows = summarize(rs)
+    assert {"month": "2026-10", "category": "meals", "currency": "USD", "count": 2, "total": 15.5} in rows
+    assert len(rows) == 2
