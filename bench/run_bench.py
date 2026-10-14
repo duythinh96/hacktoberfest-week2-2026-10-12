@@ -7,22 +7,24 @@ import json
 import time
 from pathlib import Path
 
-from receiptsort.extract import extract
+from receiptsort.extract import extract, extract_gemini
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="gemma3:4b")
     ap.add_argument("--data", type=Path, default=Path("bench/data"))
+    ap.add_argument("--backend", choices=["ollama", "google"], default="ollama")
     ap.add_argument("--limit", type=int, default=0)
     a = ap.parse_args()
+    run = extract if a.backend == "ollama" else extract_gemini
     truth = json.loads((a.data / "ground_truth.json").read_text())
     names = sorted(truth)[: a.limit or None]
     hits = {"vendor": 0, "date": 0, "total": 0, "category": 0}
     t0 = time.time()
     for n in names:
         try:
-            r = extract(a.data / n, a.model)
+            r = run(a.data / n, a.model)
         except Exception as e:
             print(f"! {n}: {e}")
             continue

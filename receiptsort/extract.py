@@ -1,7 +1,10 @@
 """Extract structured fields from a receipt image using a local Ollama vision model."""
 import base64
 import json
+import os
 import re
+import time
+import urllib.error
 import urllib.request
 from dataclasses import dataclass, asdict
 from pathlib import Path
@@ -59,3 +62,38 @@ def extract(image_path: Path, model: str = DEFAULT_MODEL, url: str = OLLAMA_URL)
     with urllib.request.urlopen(req, timeout=300) as resp:
         content = json.load(resp)["message"]["content"]
     return parse_response(content)
+
+
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+
+
+def extract_gemini(image_path: Path, model: str, api_key: str | None = None) -> Receipt:
+    """Hosted Gemma/Gemini via Google AI Studio. Sends the image to Google: dev/benchmark use on
+    synthetic data only; the local Ollama path is the privacy-preserving default."""
+    api_key = api_key or os.environ.get("GEMINI_API_KEY")
+    if not api_key:
+        raise RuntimeError("set GEMINI_API_KEY to use the Google backend")
+    suffix = Path(image_path).suffix.lower().lstrip(".")
+    mime = "image/jpeg" if suffix in ("jpg", "jpeg") else f"image/{suffix}"
+    body = json.dumps({"contents": [{"parts": [
+        {"text": PROMPT},
+        {"inline_data": {"mime_type": mime, "data": base64.b64encode(Path(image_path).read_bytes()).decode()}},
+    ]}]}).encode()
+    req = urllib.request.Request(
+        GEMINI_URL.format(model=model), body,
+        {"Content-Type": "application/json", "x-goog-api-key": api_key},
+    )
+    for attempt in range(4):
+        try:
+            with urllib.request.urlopen(req, timeout=120) as resp:
+                return parse_response(gemini_text(json.load(resp)))
+        except urllib.error.HTTPError as e:
+            if e.code < 500 or attempt == 3:
+                raise
+            time.sleep(2 ** attempt)
+
+
+def gemini_text(data: dict) -> str:
+    """Join answer parts, skipping 'thought' (reasoning) parts that some models emit first."""
+    parts = data["candidates"][0]["content"]["parts"]
+    return "".join(p.get("text", "") for p in parts if not p.get("thought"))
