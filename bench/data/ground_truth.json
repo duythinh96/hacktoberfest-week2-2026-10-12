@@ -1,0 +1,212 @@
+{
+  "receipt_000.png": {
+    "vendor": "Grab",
+    "date": "2026-02-16",
+    "total": 128000,
+    "currency": "VND",
+    "category": "travel"
+  },
+  "receipt_001.png": {
+    "vendor": "Starbucks",
+    "date": "2026-01-27",
+    "total": 3.95,
+    "currency": "USD",
+    "category": "meals"
+  },
+  "receipt_002.png": {
+    "vendor": "Highlands Coffee",
+    "date": "2026-10-04",
+    "total": 103000,
+    "currency": "VND",
+    "category": "meals"
+  },
+  "receipt_003.png": {
+    "vendor": "Viettel",
+    "date": "2026-04-14",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_004.png": {
+    "vendor": "Staples",
+    "date": "2026-04-25",
+    "total": 27.48,
+    "currency": "USD",
+    "category": "office"
+  },
+  "receipt_005.png": {
+    "vendor": "Figma",
+    "date": "2026-05-04",
+    "total": 15.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_006.png": {
+    "vendor": "Viettel",
+    "date": "2026-05-10",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_007.png": {
+    "vendor": "Viettel",
+    "date": "2026-08-08",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_008.png": {
+    "vendor": "Viettel",
+    "date": "2026-08-22",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_009.png": {
+    "vendor": "Figma",
+    "date": "2026-01-16",
+    "total": 15.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_010.png": {
+    "vendor": "EVN HCMC",
+    "date": "2026-03-17",
+    "total": 845000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_011.png": {
+    "vendor": "Viettel",
+    "date": "2026-09-12",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_012.png": {
+    "vendor": "Fahasa",
+    "date": "2026-09-26",
+    "total": 15000,
+    "currency": "VND",
+    "category": "office"
+  },
+  "receipt_013.png": {
+    "vendor": "Figma",
+    "date": "2026-06-19",
+    "total": 15.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_014.png": {
+    "vendor": "Staples",
+    "date": "2026-01-18",
+    "total": 18.49,
+    "currency": "USD",
+    "category": "office"
+  },
+  "receipt_015.png": {
+    "vendor": "Staples",
+    "date": "2026-09-19",
+    "total": 27.48,
+    "currency": "USD",
+    "category": "office"
+  },
+  "receipt_016.png": {
+    "vendor": "Uber",
+    "date": "2026-02-28",
+    "total": 23.4,
+    "currency": "USD",
+    "category": "travel"
+  },
+  "receipt_017.png": {
+    "vendor": "Uber",
+    "date": "2026-02-26",
+    "total": 2.5,
+    "currency": "USD",
+    "category": "travel"
+  },
+  "receipt_018.png": {
+    "vendor": "Grab",
+    "date": "2026-09-06",
+    "total": 128000,
+    "currency": "VND",
+    "category": "travel"
+  },
+  "receipt_019.png": {
+    "vendor": "GitHub",
+    "date": "2026-02-01",
+    "total": 10.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_020.png": {
+    "vendor": "Starbucks",
+    "date": "2026-09-07",
+    "total": 9.4,
+    "currency": "USD",
+    "category": "meals"
+  },
+  "receipt_021.png": {
+    "vendor": "Starbucks",
+    "date": "2026-03-02",
+    "total": 3.95,
+    "currency": "USD",
+    "category": "meals"
+  },
+  "receipt_022.png": {
+    "vendor": "Figma",
+    "date": "2026-04-17",
+    "total": 15.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_023.png": {
+    "vendor": "GitHub",
+    "date": "2026-05-05",
+    "total": 10.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_024.png": {
+    "vendor": "Phở 24",
+    "date": "2026-07-19",
+    "total": 75000,
+    "currency": "VND",
+    "category": "meals"
+  },
+  "receipt_025.png": {
+    "vendor": "Highlands Coffee",
+    "date": "2026-10-17",
+    "total": 103000,
+    "currency": "VND",
+    "category": "meals"
+  },
+  "receipt_026.png": {
+    "vendor": "Starbucks",
+    "date": "2026-02-22",
+    "total": 9.4,
+    "currency": "USD",
+    "category": "meals"
+  },
+  "receipt_027.png": {
+    "vendor": "GitHub",
+    "date": "2026-01-06",
+    "total": 10.0,
+    "currency": "USD",
+    "category": "software"
+  },
+  "receipt_028.png": {
+    "vendor": "EVN HCMC",
+    "date": "2026-07-07",
+    "total": 845000,
+    "currency": "VND",
+    "category": "utilities"
+  },
+  "receipt_029.png": {
+    "vendor": "Viettel",
+    "date": "2026-09-08",
+    "total": 220000,
+    "currency": "VND",
+    "category": "utilities"
+  }
+}
