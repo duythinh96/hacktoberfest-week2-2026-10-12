@@ -8,7 +8,7 @@ license = { text = "MIT" }
 dependencies = []
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["pytest", "pillow"]
 
 [project.scripts]
 receiptsort = "receiptsort.cli:main"

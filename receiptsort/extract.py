@@ -7,7 +7,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 
 OLLAMA_URL = "http://localhost:11434/api/chat"
-DEFAULT_MODEL = "qwen2.5vl:7b"
+DEFAULT_MODEL = "gemma3:4b"
 
 PROMPT = (
     "You read receipts and invoices. Return ONLY a JSON object with keys: "

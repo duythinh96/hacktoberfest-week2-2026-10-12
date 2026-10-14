@@ -9,7 +9,7 @@ Local-first receipt & invoice sorter for freelancers. A vision model running on 
 
 ## Quick start
 ```bash
-ollama pull qwen2.5vl:7b
+ollama pull gemma3:4b   # ~3GB, fits 16GB RAM (or qwen2.5vl:3b)
 pip install -e .
 receiptsort ./my-receipts -o ./sorted
 ```
