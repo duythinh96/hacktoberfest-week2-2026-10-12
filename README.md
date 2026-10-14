@@ -15,6 +15,13 @@ receiptsort ./my-receipts -o ./sorted
 ```
 Output: `sorted/<category>/<date>_<vendor>_<total>.jpg` and `sorted/receipts.csv`.
 
+## Optional: hosted Google backend (benchmarking only)
+```bash
+export GEMINI_API_KEY=...   # from Google AI Studio
+python bench/run_bench.py --backend google --model <gemma-model-id>
+```
+This uploads images to Google, so use it on **synthetic data only**. Local Ollama stays the default.
+
 ## Develop
 ```bash
 pip install -e ".[dev]" && pytest
